@@ -1,0 +1,17 @@
+h2 {
+    text-align: center; 
+    color: green;
+} 
+p {
+    font-size: 18px;
+}
+.termin {
+    padding-left: 40px;
+}
+a {
+    text-decoration: none;
+    color: green;
+}
+a[target] {
+    color: red;
+}
