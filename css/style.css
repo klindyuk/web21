@@ -1,9 +1,30 @@
+/* body {
+    background-color: lightblue;
+    background-image: url(../img/tatiana.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+} */
+/* .overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+} */
 h2 {
     text-align: center; 
-    color: green;
+    color: rgb(255, 0, 0);
 } 
+h3 {
+    color: rgba(255, 0, 0, 0.5);
+}
 p {
-    font-size: 18px;
+    width: 50%;
+    font-size: 18.5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #fff;
+}
+p#test {
+    min-height: 100px;
 }
 .termin {
     padding-left: 40px;
@@ -14,4 +35,8 @@ a {
 }
 a[target] {
     color: red;
+}
+
+img {
+    width: 50%;
 }
