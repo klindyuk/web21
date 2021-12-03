@@ -33,6 +33,21 @@ a {
     text-decoration: none;
     color: green;
 }
+a:hover {
+    color: blue;
+}
+a:link {
+    color: green;
+}
+a:visited {
+    color: black;
+}
+
+a::after {
+    content: " был";
+    color: red;
+}
+
 a[target] {
     color: red;
 }
@@ -40,3 +55,42 @@ a[target] {
 img {
     width: 50%;
 }
+
+p:first-child {
+    color:red;
+}
+p:first-of-type {
+    color:brown;
+}
+p:last-child {
+    color: blue;
+}
+p::first-letter {
+    color: red;
+    font-size: 3em;
+    float: left;
+    margin-right: 5px;
+}
+
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid red;
+}
+
+table.chess td {
+    width: 20px;
+    height: 20px;
+}
+
+/* table.chess tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table.chess tr:nth-child(odd) {
+    background-color: #ccc;
+} */
