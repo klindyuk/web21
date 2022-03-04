@@ -7,13 +7,43 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Заголовок</h1>
-    <p>А вот тут будет переменная.</p>
     <?php
-        echo "Hello world";
+    // Каскадное ветвление
+        $a = 5; $b = 5;
+        if ($a > $b) {
+            echo 'Первая переменная больше';
+        } else if ($a < $b) {
+            echo 'Вторая переменная больше';
+        } else {
+            echo 'Переменные равны';
+        }
+
+    // оператор выбора
+        $now = 'evening';
+        switch ($now) {
+            case 'morning':
+                echo 'Доброе утро';
+                break;
+            case 'day':
+                echo 'Добрый день';
+                break;
+            case 'evening':
+                echo 'Добрый вечер';
+                break;
+            case 'nigth':
+                echo 'Доброй ночи';
+                break;
+            default:
+                echo 'Ээээ...';
+        }
+
+        // тернарный оператор
+        // присвоить переменной с максимум из a и b
         $a = 5;
+        $b = 7;
+        $c = $a > $b ? $a : $b;
+        echo 'c = ', $c;
     ?>
-    <p>А это второй абзац. В нем я вывожу значение переменной $a: a = <?= $a; ?></p>
 
 </body>
 </html>
