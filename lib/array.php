@@ -52,5 +52,26 @@
     <?php foreach($arr as $value) : ?>
         <p><?= $value ?></p>
     <?php endforeach ?>
+
+    <p>Количество элементов массива</p>
+    <p>
+        <?=count($arr) ?>
+    </p>
+    <p>in_array(10): <?=in_array(10, $arr) ?>, in_array(555): <?= in_array(555, $arr) ?></p>
+    <?php
+    sort($arr);
+    ?>
+    <?php foreach($arr as $key => $value) : ?>
+        <p>Ключ: <?= $key ?>. Значение: <?= $value ?></p>
+    <?php endforeach ?>
+
+    <?php
+    $arr1 = explode(' ', 'Мама мыла раму');
+    var_dump($arr1);
+    $str1 = implode(', ', $arr1);
+    var_dump($str1);
+
+    var_dump($_GET);
+    ?>
 </body>
 </html>
