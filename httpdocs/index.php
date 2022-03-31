@@ -9,7 +9,7 @@
 <body>
     <?php
     // include_once '../lib/mylib1.php';
-    require_once '../lib/mylib1.php';
+    require_once '../lib/lesson5.php';
     // hello();
     ?>
     <p>Тут еще текст</p>
