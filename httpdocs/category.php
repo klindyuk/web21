@@ -31,7 +31,7 @@ require_once '../lib/connection.php';
 
 
 
-<div class="container">
+<div class="container d-flex">
     <div class="sidebar border" style="width: 250px;">
     <nav class="nav">
         <ul class="nav">
@@ -43,6 +43,31 @@ require_once '../lib/connection.php';
         </ul>
     </nav>
         
+    </div>
+
+    <div class="content w-100">
+        <?php
+            $id = $_GET["id"];
+            $result = mysqli_query($link, "SELECT `name` FROM `categories` WHERE `id`=$id");
+            $category_name = mysqli_fetch_assoc($result)["name"];
+            $result = mysqli_query($link, "SELECT * FROM `products` WHERE `category_id`=$id");
+            $cnt = mysqli_num_rows($result);
+        ?>
+        <h2 class="text-center"><?= $category_name ?> (<?= $cnt ?>)</h2>
+        <div class="d-flex">
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+            <div class="card m-3" style="width: 18rem;">
+                <img src="/media/products/<?= $row["photo"] ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="product.php?id=<?= $row["id"] ?>"><?= $row["name"] ?></a>
+                    </h5>
+                    <p class="card-text"><?= $row["price"] ?></p>
+                    <a href="#" class="btn btn-primary">В корзину</a>
+                </div>
+            </div>
+        <?php endwhile; ?>
+        </div>
     </div>
 </div>
 
