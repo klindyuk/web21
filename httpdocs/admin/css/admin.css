@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.sidebar {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    width: 200px;
+}
+.main {
+    padding: 20px;
+}
+.form_control {
+    margin: 10px;
+}
