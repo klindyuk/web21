@@ -14,3 +14,8 @@
 .form_control {
     margin: 10px;
 }
+div.message {
+    background-color: lightgreen;
+    padding: 5px;
+    border: 1px solid green;
+}

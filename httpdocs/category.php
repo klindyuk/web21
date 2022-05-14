@@ -54,7 +54,7 @@ require_once '../lib/connection.php';
             $cnt = mysqli_num_rows($result);
         ?>
         <h2 class="text-center"><?= $category_name ?> (<?= $cnt ?>)</h2>
-        <div class="d-flex">
+        <div class="d-flex flex-wrap">
         <?php while ($row = mysqli_fetch_assoc($result)) : ?>
             <div class="card m-3" style="width: 18rem;">
                 <img src="/media/products/<?= $row["photo"] ?>" class="card-img-top" alt="...">
