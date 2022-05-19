@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
 require_once '../../lib/connection.php';
 if (count($_POST) > 0) {
     switch ($_POST["_method"]) {
@@ -64,9 +69,12 @@ if (count($_POST) > 0) {
             <?php if (isset($message)): ?>
                 <div class="message"><?= $message ?></div>
             <?php endif ?>
+            <?php
+            if (isset($_SESSION['username'])) echo 'привет, ' . $_SESSION['username'];
+            ?>
             
         <?php if (isset($_GET['action'])) : ?>
-        
+            
             <?php if ($_GET['action'] == 'show'): ?>
             <h2>Один товар</h2>
 

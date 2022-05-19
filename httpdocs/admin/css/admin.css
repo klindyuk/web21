@@ -1,3 +1,7 @@
+body {
+    height: 100vh;
+    width: 100%;
+}
 .container {
     display: flex;
     width: 800px;
@@ -18,4 +22,19 @@ div.message {
     background-color: lightgreen;
     padding: 5px;
     border: 1px solid green;
+}
+div.login {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+form.login_form {
+    width: 400px;
+    border: 1px solid black;
+}
+form.login_form input {
+    display: block;
+    margin: 0 auto;
 }
