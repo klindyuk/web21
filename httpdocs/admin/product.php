@@ -1,11 +1,40 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit;
-}
 require_once '../../lib/connection.php';
+if (isset($_SESSION['username'])) {
+    if (isset($_COOKIE["user_id"])) {
+        setcookie("user_id", $_COOKIE["user_id"], time() + 3600 * 24);
+        setcookie("token", $_COOKIE["token"], time() + 3600 * 24);
+    }
+} else {
+    if (isset($_COOKIE["user_id"])) {
+        $id = $_COOKIE["user_id"];
+        $result = mysqli_query($link, "SELECT * FROM `users` WHERE `id`=$id");
+        if ($result) {
+            $user = mysqli_fetch_assoc($result);
+            if ($user["auth_token"] == $_COOKIE["token"]) {
+                $_SESSION['username'] = $user['name'];
+                $_SESSION['user_id'] = $user['id'];
+            }
+        }
+    } else {
+        header("Location: login.php");
+        exit;
+    }
+}
+
 if (count($_POST) > 0) {
+    if (isset($_POST["logout"])) {
+        if (isset($_COOKIE["user_id"])) {
+            setcookie("user_id", $_COOKIE["user_id"], time() - 3600 * 24);
+            setcookie("token", $_COOKIE["token"], time() - 3600 * 24);
+        }
+        unset($_SESSION["username"]);
+        unset($_SESSION["user_id"]);
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
     switch ($_POST["_method"]) {
         case "post":
             $sku = mysqli_real_escape_string($link, (string)htmlspecialchars($_POST["sku"]));
@@ -70,7 +99,15 @@ if (count($_POST) > 0) {
                 <div class="message"><?= $message ?></div>
             <?php endif ?>
             <?php
-            if (isset($_SESSION['username'])) echo 'привет, ' . $_SESSION['username'];
+            if (isset($_SESSION['username'])) {
+                echo 'привет, ' . $_SESSION['username'];
+                ?>
+                <form action="product.php" method="post">
+                    <input type="submit" name="logout" value="выход">
+                </form>
+                <?php
+            }
+            if (isset($_COOKIE['id'])) echo 'cookie установлены';
             ?>
             
         <?php if (isset($_GET['action'])) : ?>

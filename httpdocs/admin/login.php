@@ -10,6 +10,14 @@ if (isset($_POST['login_submit'])) {
     if (password_verify($_POST['password'], $user['password'])) {
         $_SESSION['username'] = $user['name'];
         $_SESSION['user_id'] = $user['id'];
+        if (isset($_POST['remember'])) {
+            setcookie("user_id", $user['id'], time() + 3600 * 24);
+            $token = str_shuffle(md5(microtime()));
+            echo $token;
+            $id = $user['id'];
+            mysqli_query($link, "UPDATE `users` SET `auth_token`=\"$token\" WHERE `id`=$id");
+            setcookie("token", $token, time() + 3600 * 24);
+        }
         header("Location: product.php");
         exit;
     } else {
@@ -35,6 +43,10 @@ if (isset($_POST['login_submit'])) {
         </div>
         <div class="form_control">
             <input type="password" name="password" id="password" placeholder="Пароль" require>
+        </div>
+        <div class="form_control">
+            <label for="remember">Запомнить на сутки</label>
+            <input type="checkbox" name="remember" id="remember" style="display:inline;">
         </div>
         <div class="form_control">
             <input type="submit" name="login_submit" value="Вход">
